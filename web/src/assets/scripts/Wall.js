@@ -1,7 +1,7 @@
 import { GameObejct } from "./GameObject";
 
-export class WallGenerator extends GameObejct {
-    constructor(row, col, gamemap) {
+export class Wall extends GameObejct {
+    constructor(col, row, gamemap) {
         super();
 
         this.row = row;
@@ -18,6 +18,6 @@ export class WallGenerator extends GameObejct {
         const L = this.gamemap.L;
         const ctx = this.gamemap.ctx;
         ctx.fillStyle = this.color;
-        ctx.fillRect(this.row * L, this.col * L, L, L);
+        ctx.fillRect(this.col * L, this.row * L, L, L);
     }
 }

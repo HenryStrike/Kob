@@ -16,7 +16,7 @@ class GameMapView extends Component {
     render() { 
         return (
             <div className='gamemap' ref={this.root}>
-                <canvas ref={this.ctx}></canvas>
+                <canvas ref={this.ctx} tabIndex="0"></canvas>
             </div>
         );
     }
