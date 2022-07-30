@@ -37,7 +37,7 @@ const Routes = (isLoggedIn) => {
             children : [
                 {
                     path : 'bot',
-                    element : <UserBotIndexView/>,
+                    element : ProtectRoute(<UserBotIndexView/>, isLoggedIn, "/user/login/"),
                 },
                 {
                     path : 'login',

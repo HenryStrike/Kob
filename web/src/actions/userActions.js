@@ -34,9 +34,7 @@ const getInfo = (data) => (dispatch) => {
     $.ajax({
         url : API_URL + "info/",
         type : "get",
-        headers : {
-            Authorization : "Bearer " + data.token,
-        },
+        headers : {Authorization : "Bearer " + data.token},
         success(resp){
             if(resp.runtime_message === "getInfo success"){
                 dispatch({
