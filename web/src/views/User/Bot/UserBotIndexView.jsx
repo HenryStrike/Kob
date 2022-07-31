@@ -1,78 +1,46 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import BaseContainer from '../../../components/BaseContainer';
-import $ from 'jquery';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import botACTIONS from '../../../actions/botActions';
+import BotCard from '../../../components/BotCard';
 
 function UserBotIndexView() {
-
     const token = useSelector((state) => (state.user.token));
+    const botList = useSelector((state) => (state.bot.bot_list));
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        // $.ajax({
-        //     url : "http://127.0.0.1:8080/user/bot/add/",
-        //     type : "post",
-        //     headers : {Authorization : "Bearer " + token},
-        //     data : {
-        //         title : "bot123",
-        //         description : "bot1 aadddd",
-        //         content : "includeaaaaa",
-        //     },
-        //     success(resp){
-        //         console.log(resp);
-        //     },
-        //     error(resp){
-        //         console.log(resp);
-        //     }
-        // });
-        // $.ajax({
-        //     url : "http://127.0.0.1:8080/user/bot/remove/",
-        //     type : "post",
-        //     headers : {Authorization : "Bearer " + token},
-        //     data : {
-        //         bot_id : 3,
-        //     },
-        //     success(resp){
-        //         console.log(resp);
-        //     },
-        //     error(resp){
-        //         console.log(resp);
-        //     }
-        // });
-        // $.ajax({
-        //     url : "http://127.0.0.1:8080/user/bot/edit/",
-        //     type : "post",
-        //     headers : {Authorization : "Bearer " + token},
-        //     data : {
-        //         bot_id : 5,
-        //         title : "botedit",
-        //         description : "botedit",
-        //         content : "includeedit",
-        //     },
-        //     success(resp){
-        //         console.log(resp);
-        //     },
-        //     error(resp){
-        //         console.log(resp);
-        //     }
-        // });
-        $.ajax({
-            url : "http://127.0.0.1:8080/user/bot/list/",
-            type : "get",
-            headers : {Authorization : "Bearer " + token},
-            success(resp){
-                console.log(resp);
-            },
-            error(resp){
-                console.log(resp);
-            },
-        });
-    }, [token]);
+    dispatch(botACTIONS.getList({
+        token,
+        success() { },
+        error() { },
+    }));
 
-    return ( 
+    return (
         <BaseContainer>
-            Bot
+            <div className="row justify-content-md-center">
+                <div className="col-md-3">
+                    <BaseContainer>
+                        userprofile
+                    </BaseContainer>
+                </div>
+                <div className="col-md-6">
+                    {botList.map(item => (
+                        <BotCard
+                            key={item.id}
+                            title={item.title}
+                            score={item.score}
+                            description={item.description}
+                        />
+                    ))}
+                </div>
+                <div className="col-md-3">
+                    <BaseContainer>
+                        post
+                    </BaseContainer>
+                </div>
+            </div>
         </BaseContainer>
-     );
+    );
 }
 
 export default UserBotIndexView;

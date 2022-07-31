@@ -26,17 +26,17 @@ function NavBar() {
                 <div className="collapse navbar-collapse" id="navbarText">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/pk/">PK</NavLink>
+                            <NavLink className={({isActive}) => (isActive ? "nav-link active selected" : "nav-link")} to="/game/">Game</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/record/">Record</NavLink>
+                            <NavLink className={({isActive}) => (isActive ? "nav-link active selected" : "nav-link")} to="/record/">Record</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/rank/">Rank</NavLink>
+                            <NavLink className={({isActive}) => (isActive ? "nav-link active selected" : "nav-link")} to="/rank/">Rank</NavLink>
                         </li>
                     </ul>
                     {isLoggedIn && <ul className="navbar-nav">
-                        <img src={photo} className="userPhoto" alt="userIcon" />
+                        <img src={photo} className="user_photo" alt="userIcon" />
                         <li className="nav-item dropdown">
                             <NavLink className="nav-link dropdown-toggle" to="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {username}

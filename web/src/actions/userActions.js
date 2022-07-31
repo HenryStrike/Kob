@@ -72,7 +72,7 @@ const logout = () => (dispatch) => {
     localStorage.removeItem("token");
 };
 
-const regiser = (data) => (dispatch) => {
+const regiser = (data) => {
     $.ajax({
         url : API_URL + "register/",
         type : "post",

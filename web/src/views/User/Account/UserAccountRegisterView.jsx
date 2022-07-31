@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import BaseContainer from '../../../components/BaseContainer';
 import userActions from '../../../actions/userActions';
@@ -9,8 +8,6 @@ function UserAccountRegisterView() {
     const password = useRef(null);
     const confirmedPassword = useRef(null);
     const message = useRef(null);
-
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     function handleRegister (event) {
@@ -20,15 +17,14 @@ function UserAccountRegisterView() {
             username : username.current.value,
             password : password.current.value,
             confirmedPassword : confirmedPassword.current.value,
-            success(resp) {
+            success() {
                 navigate('/user/login/');
             },
             error(resp) {
                 message.current.innerText = resp.runtime_message;
             }
         }
-
-        dispatch(userActions.regiser(data));
+        userActions.regiser(data);
     }
 
     return (

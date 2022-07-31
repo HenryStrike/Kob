@@ -3,8 +3,10 @@ const ACTIONS = {
     UPDATE_TOKEN : "update_token",
     UPDATE_PULLING : "update_pulling",
 
-    SET_MESSAGE : "set_message",
-    CLEAR_MESSAGE : "clear_message",
+    UPDATE_BOT_LIST : "update_bot_list",
+    ADD_BOT : "add_bot",
+    EDIT_BOT : "edit_bot",
+    REMOVE_BOT : "remove_bot",
 };
 
 export default ACTIONS;

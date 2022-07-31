@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 import { configureStore} from "@reduxjs/toolkit";
 import UserReducer from './user';
-import MessageReducer from "./message";
+import BotReducer from "./bot";
 
 const reducer = combineReducers({
     user : UserReducer,
-    message : MessageReducer,
+    bot : BotReducer,
 });
 
 const store = configureStore({

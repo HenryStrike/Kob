@@ -5,7 +5,7 @@ class BaseContainer extends Component {
     render() { 
         return (
             <div className="container">
-                <div className="card mt-3">
+                <div className="card mt-3 mb-3">
                     <div className="card-body">
                         {this.props.children}
                     </div>

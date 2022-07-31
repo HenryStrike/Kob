@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import ProtectRoute from './ProtectRoute';
 import RecordIndexView from '../views/Record/RecordIndexView';
-import PkIndexView from '../views/PK/PkIndexView';
+import GameIndexView from '../views/Game/GameIndexView';
 import RankIndexView from '../views/Rank/RankIndexView';
 import NotFound from '../views/Error/NotFound';
 import UserBotIndexView from '../views/User/Bot/UserBotIndexView';
@@ -13,15 +13,15 @@ const Routes = (isLoggedIn) => {
     return [
         {
             path : '/',
-            element : <Navigate replace to="/pk/"/>,
+            element : <Navigate replace to="/game/"/>,
         },
         {
             path : '/rank',
             element : ProtectRoute(<RankIndexView/>, isLoggedIn, "/user/login/"),
         },
         {
-            path : '/pk',
-            element : <PkIndexView/>,
+            path : '/game',
+            element : <GameIndexView/>,
         },
         {
             path : '/record',

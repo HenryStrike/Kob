@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PlayGround from './../../components/PlayGround';
+import PlayGround from '../../components/PlayGround';
 
-class PkIndexView extends Component {
+class GameIndexView extends Component {
     state = {  } 
     render() { 
         return (
@@ -10,4 +10,4 @@ class PkIndexView extends Component {
     }
 }
  
-export default PkIndexView;
+export default GameIndexView;
