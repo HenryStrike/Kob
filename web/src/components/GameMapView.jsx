@@ -1,25 +1,21 @@
-import React, { Component } from 'react';
+import React, { useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { GameMap } from '../assets/scripts/GameMap';
 
-class GameMapView extends Component {
-    constructor(props){
-        super(props);
+function GameMapView() {
+    const root = useRef(null);
+    const ctx = useRef(null);
+    const game_map = useSelector((state) => (state.game.game_map));
 
-        this.root = React.createRef();
-        this.ctx = React.createRef();
-    }
+    useEffect(() => {
+        new GameMap(ctx.current.getContext('2d'), root.current, game_map);
+    })
 
-    componentDidMount() {
-        new GameMap(this.ctx.current.getContext('2d'), this.root.current);
-    }
-
-    render() { 
-        return (
-            <div className='gamemap' ref={this.root}>
-                <canvas ref={this.ctx} tabIndex="0"></canvas>
-            </div>
-        );
-    }
+    return (
+        <div className='gamemap' ref={root}>
+            <canvas ref={ctx} tabIndex="0"></canvas>
+        </div>
+    );
 }
- 
+
 export default GameMapView;

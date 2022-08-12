@@ -21,7 +21,15 @@
   align-items: center;
 }
 
-.user_photo {
+.matchground {
+  width: 60vw;
+  height: 70vh;
+  margin: 5vh auto;
+  background-color: rgba(50, 50, 50, 0.6);
+  border-radius: 5px;
+}
+
+.user_photo_nav {
   height: 2em;
   width: 2em;
   border-radius: 50%;
@@ -29,9 +37,44 @@
   margin-bottom: auto;
 }
 
-.robot_icon {
-  height: 2em;
-  width: 2em;
-  margin-top: auto;
-  margin-bottom: auto;
+.user_photo_pk {
+  text-align: center;
+  margin-top: 15vh
+}
+
+.user_photo_pk > img {
+  height: 20vh;
+  border-radius: 50%;
+  border-color: rgb(255, 181, 44);
+  border-width: 5px;
+  border-style: solid;
+}
+
+.username {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  color: white;
+  margin-top: 1em;
+}
+
+.vs_icon {
+  text-align: center;
+}
+
+.vs_icon > img {
+  height: 10vh;
+  margin-top: 20vh;
+}
+
+.match_btn {
+  text-align: center;
+  padding-top: 12vh;
+}
+
+.login_icon {
+  height: 1.8em;
+  width: 1.8em;
+  margin-right: 0.5em;
+  margin-bottom: 0.4em;
 }

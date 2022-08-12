@@ -3,7 +3,7 @@ import { Wall } from './Wall';
 import { Snake } from './Snake';
 
 export class GameMap extends GameObejct{
-    constructor(ctx, root){
+    constructor(ctx, root, game_map){
         super();
 
         this.ctx = ctx;
@@ -15,13 +15,14 @@ export class GameMap extends GameObejct{
 
         // save all the wall objects
         this.walls = [];
-        this.inner_walls_count = 20;
 
         // create snakes
         this.snakes = [
             new Snake({id : 0, color : '#4876EC', row : this.rows - 2, col : 1}, this),
             new Snake({id : 1, color : '#F94848', row : 1, col : this.cols - 2}, this),
         ];
+
+        this.game_map = game_map;
     }
 
     check_ready_to_move() {
@@ -63,65 +64,15 @@ export class GameMap extends GameObejct{
         }
     }
 
-    check_connection(g, sx, sy, tx, ty) {
-        //dfs search path
-        if(sx === tx && sy === ty){
-            return true;
-        }
-        g[sx][sy] = true;
-
-        let dx = [0, 1, 0, -1], dy = [-1, 0, 1, 0];
-        for(let i = 0; i < 4; i ++) {
-            let a = sx + dx[i], b = sy + dy[i];
-            if(!g[a][b] && this.check_connection(g, a, b, tx, ty)){
-                return true;
-            }
-        }
-
-        return false;
-    }
-
     create_walls() {
-        const st = [];
-
-        // initialize the state matrix and fill the boarder
-        for(let i = 0; i < this.cols; i ++) {
-            st[i] = [];
-            for(let j = 0; j < this.rows; j ++) {
-                if(i === 0 || i === this.cols - 1 || j === 0 || j === this.rows - 1){
-                    st[i][j] = true;
-                }else{
-                    st[i][j] = false;
-                }
-            }
-        }
-
-        // create random inner walls
-        for(let i = 0, t = 0; i < this.inner_walls_count / 2 && t < 1000; i ++) {
-            let row = parseInt(Math.random() * (this.rows - 2)) + 1;
-            let col = parseInt(Math.random() * (this.cols - 2)) + 1;
-
-            if(st[col][row] || (row === this.rows - 2 && col === 1) || (row === 1 && col === this.cols - 2)){
-                i --;
-                t ++;
-                continue;
-            }else{
-                st[col][row] = st[this.cols - 1 - col][this.rows - 1 - row] = true;
-            }
-        }
-
-        for(let i = 0; i < this.cols; i ++) {
-            for(let j = 0; j < this.rows; j ++) {
-                if(st[i][j]){
+        const g = this.game_map;
+        for(let i = 0; i < this.rows; i ++) {
+            for(let j = 0; j < this.cols; j ++) {
+                if(g[i][j]){
                     this.walls.push(new Wall(i, j, this));
                 }
             }
         }
-
-        // obtain a copy of state matrix
-        const copy_st = JSON.parse(JSON.stringify(st));
-
-        return this.check_connection(copy_st, 1, this.rows - 2, this.cols - 2, 1);
     }
     
     // temporary input
@@ -142,10 +93,7 @@ export class GameMap extends GameObejct{
     }
 
     start() {
-        for(let t = 0; t < 1000; t ++) {
-            if(this.create_walls()) break;
-        }
-
+        this.create_walls();
         this.add_listener_event();
     }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import userActions from '../actions/userActions';
+import { logout } from '../reducers/userSlice';
 
 function NavBar() {
     const username = useSelector((state) => (state.user.username));
@@ -13,7 +13,7 @@ function NavBar() {
 
     function handleLogout(event) {
         event.preventDefault();
-        dispatch(userActions.logout());
+        dispatch(logout());
     }
 
     return (
@@ -26,17 +26,20 @@ function NavBar() {
                 <div className="collapse navbar-collapse" id="navbarText">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <NavLink className={({isActive}) => (isActive ? "nav-link active selected" : "nav-link")} to="/game/">Game</NavLink>
+                            <NavLink className={({ isActive }) => (isActive ? "nav-link active selected" : "nav-link")} to="/home/">Home</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className={({isActive}) => (isActive ? "nav-link active selected" : "nav-link")} to="/record/">Record</NavLink>
+                            <NavLink className={({ isActive }) => (isActive ? "nav-link active selected" : "nav-link")} to="/game/">Game</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className={({isActive}) => (isActive ? "nav-link active selected" : "nav-link")} to="/rank/">Rank</NavLink>
+                            <NavLink className={({ isActive }) => (isActive ? "nav-link active selected" : "nav-link")} to="/record/">Record</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink className={({ isActive }) => (isActive ? "nav-link active selected" : "nav-link")} to="/rank/">Rank</NavLink>
                         </li>
                     </ul>
                     {isLoggedIn && <ul className="navbar-nav">
-                        <img src={photo} className="user_photo" alt="userIcon" />
+                        <img src={photo} className="user_photo_nav" alt="userIcon" />
                         <li className="nav-item dropdown">
                             <NavLink className="nav-link dropdown-toggle" to="" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {username}
@@ -50,10 +53,10 @@ function NavBar() {
                     </ul>}
                     {(!isPulling && !isLoggedIn) && <ul className="navbar-nav">
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/user/login/">Login</NavLink>
+                            <NavLink className={({ isActive }) => (isActive ? "nav-link active selected" : "nav-link")} to="/user/login/">Login</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/user/register/">Register</NavLink>
+                            <NavLink className={({ isActive }) => (isActive ? "nav-link active selected" : "nav-link")} to="/user/register/">Register</NavLink>
                         </li>
                     </ul>}
                 </div>

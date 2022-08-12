@@ -5,7 +5,7 @@ import 'bootstrap/dist/js/bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRoutes } from 'react-router-dom';
 import Routes from './components/Routes';
-import validationActions from './actions/validationActions';
+import { checkLocalUser } from './reducers/userSlice';
 
 function App() {
 	const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -14,7 +14,7 @@ function App() {
 	const dispatch = useDispatch();
 
     if(!isLoggedIn && isPulling){
-        dispatch(validationActions.CheckLocalUser({
+        dispatch(checkLocalUser({
             success(){},
             error(){},
         }));

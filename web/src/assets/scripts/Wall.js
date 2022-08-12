@@ -1,7 +1,7 @@
 import { GameObejct } from "./GameObject";
 
 export class Wall extends GameObejct {
-    constructor(col, row, gamemap) {
+    constructor(row, col, gamemap) {
         super();
 
         this.row = row;

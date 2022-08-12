@@ -8,12 +8,17 @@ import NotFound from '../views/Error/NotFound';
 import UserBotIndexView from '../views/User/Bot/UserBotIndexView';
 import UserAccountLoginView from '../views/User/Account/UserAccountLoginView';
 import UserAccountRegisterView from '../views/User/Account/UserAccountRegisterView';
+import IndexView from './../views/IndexView';
 
 const Routes = (isLoggedIn) => {
     return [
         {
             path : '/',
-            element : <Navigate replace to="/game/"/>,
+            element : <Navigate replace to="/home/"/>,
+        },
+        {
+            path : '/home',
+            element : <IndexView/>,
         },
         {
             path : '/rank',
@@ -21,7 +26,7 @@ const Routes = (isLoggedIn) => {
         },
         {
             path : '/game',
-            element : <GameIndexView/>,
+            element : ProtectRoute(<GameIndexView/>, isLoggedIn, "/user/login/"),
         },
         {
             path : '/record',
