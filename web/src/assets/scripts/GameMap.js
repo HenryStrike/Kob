@@ -3,11 +3,12 @@ import { Wall } from './Wall';
 import { Snake } from './Snake';
 
 export class GameMap extends GameObejct{
-    constructor(ctx, root, game_map){
+    constructor(ctx, root, game_map, socket){
         super();
 
         this.ctx = ctx;
         this.root = root;
+        this.socket = socket;
 
         // number of grids
         this.rows = 13;
@@ -34,30 +35,6 @@ export class GameMap extends GameObejct{
         return true;
     }
 
-    check_valid(cell) {
-        for(const wall of this.walls) {
-            if(cell.row === wall.row && cell.col === wall.col){
-                return false;
-            }
-        }
-
-        for(const snake of this.snakes) {
-            let len = snake.cells.length;
-            // when tail will move, no need to check
-            if(!snake.check_tail_increment()) {
-                len --;
-            }
-
-            for(let i = 0; i < len; i ++) {
-                if(cell.row === snake.cells[i].row && cell.col === snake.cells[i].col) {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-    }
-
     next_step() {
         for(const snake of this.snakes){
             snake.start_move();
@@ -74,21 +51,39 @@ export class GameMap extends GameObejct{
             }
         }
     }
+
+    set_directions(data) {
+        const [snake0, snake1] = this.snakes;
+        snake0.set_direction(data.a_direction);
+        snake1.set_direction(data.b_direction);
+    }
+
+    set_status(data) {
+        const [snake0, snake1] = this.snakes;
+        if(data.loser === "all" || data.loser === "a") {
+            snake0.status = "dead";
+        }
+        if(data.loser === "all" || data.loser === "b"){
+            snake1.status = "dead";
+        }
+    }
     
     // temporary input
     add_listener_event() {
         this.ctx.canvas.focus();
-
-        const [snake0, snake1] = this.snakes;
         this.ctx.canvas.addEventListener('keydown', (e)=>{
-            if(e.key === 'w') snake0.set_direction(0);
-            else if(e.key === 'd') snake0.set_direction(1);
-            else if(e.key === 's') snake0.set_direction(2);
-            else if(e.key === 'a') snake0.set_direction(3);
-            else if(e.key === 'ArrowUp') snake1.set_direction(0);
-            else if(e.key === 'ArrowRight') snake1.set_direction(1);
-            else if(e.key === 'ArrowDown') snake1.set_direction(2);
-            else if(e.key === 'ArrowLeft') snake1.set_direction(3);
+            let d = -1;
+            if(e.key === 'w') d = 0;
+            else if(e.key === 'd') d = 1;
+            else if(e.key === 's') d = 2;
+            else if(e.key === 'a') d = 3;
+
+            if (d >= 0) {
+                this.socket.send(JSON.stringify({
+                    event : "move",
+                    direction : d,
+                }))
+            }
         });
     }
 

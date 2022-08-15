@@ -1,29 +1,26 @@
 import React, { useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function MatchGround() {
     const match_btn = useRef(null);
 
     const myphoto = useSelector((state) => (state.user.photo));
     const myname = useSelector((state) => (state.user.username));
-    const yourphoto = useSelector((state) => (state.game.opponent_photo));
-    const yourname = useSelector((state) => (state.game.opponent_username));
-
-    const dispatch = useDispatch();
+    const yourphoto = useSelector((state) => (state.snakeGame.opponent_photo));
+    const yourname = useSelector((state) => (state.snakeGame.opponent_username));
+    const socket = useSelector((state) => (state.snakeGame.socket));
 
     const handleMatchClick = () => {
         if (match_btn.current.innerHTML === "Match") {
             match_btn.current.innerHTML = "Cancel";
-            dispatch({
-                type: "SEND_MESSAGE",
-                payload: "start_matching",
-            });
+            socket.send(JSON.stringify({
+                event : "start_matching"
+            }));
         } else {
             match_btn.current.innerHTML = "Match";
-            dispatch({
-                type: "SEND_MESSAGE",
-                payload: "stop_matching",
-            });
+            socket.send(JSON.stringify({
+                event : "stop_matching"
+            }));
         }
     }
 

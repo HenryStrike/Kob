@@ -78,3 +78,26 @@
   margin-right: 0.5em;
   margin-bottom: 0.4em;
 }
+
+.result-board {
+  height: 30vh;
+  width: 30vw;
+  border-radius: 6px;
+  background-color: rgba(50, 50, 50, 0.6);
+  position: absolute;
+  padding-top: 5vh;
+  top: 30vh;
+  left: 35vw;
+}
+
+.result-board-text {
+  text-align: center;
+  color: white;
+  font-size: 50px;
+  font-weight: 600;
+}
+
+.result-board-btn {
+  padding-top: 5vh;
+  text-align: center;
+}
