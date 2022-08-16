@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import SnakeGameMap from './SnakeGameMap';
+import GameMapView from './GameMapView';
 
 class PlayGround extends Component {
     state = {  } 
     render() { 
         return (
             <div className="playground">
-                <SnakeGameMap/>
+                <GameMapView/>
             </div>
         );
     }

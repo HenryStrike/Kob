@@ -40,16 +40,12 @@ export const snakeGameSlice = createSlice({
     updateGameObject: (state, action) => {
       state.game_object = action.payload;
     },
-    updateGameMove: (state, action) => {
-      state.game_object.set_directions(action.payload);
-    },
-    updateGameResult: (state, action) => {
-      state.game_object.set_status(action.payload);
-      state.loser = action.payload.loser;
-    },
+    updateLoser: (state, action) => {
+      state.loser = action.payload;
+    }
   },
 })
 
-export const { updateSocket, updateOpponent, updateStatus, updateGame, updateGameObject, updateGameMove, updateGameResult } = snakeGameSlice.actions
+export const { updateSocket, updateOpponent, updateStatus, updateGame, updateGameObject, updateLoser } = snakeGameSlice.actions
 
 export default snakeGameSlice.reducer

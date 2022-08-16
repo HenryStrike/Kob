@@ -3,6 +3,7 @@ package com.kob.backend.consumer;
 import com.alibaba.fastjson.JSONObject;
 import com.kob.backend.consumer.utils.Games.Snake.Game;
 import com.kob.backend.consumer.utils.JwtAuthentication;
+import com.kob.backend.mapper.RecordMapper;
 import com.kob.backend.mapper.UserMapper;
 import com.kob.backend.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,16 @@ public class WebSocketServer {
     final public static ConcurrentHashMap<Integer, WebSocketServer> users = new ConcurrentHashMap<>();
     final private static CopyOnWriteArraySet<User> matchPool = new CopyOnWriteArraySet<>();
     private static UserMapper userMapper;
+    public static RecordMapper recordMapper;
     private Game game = null;
 
     @Autowired
     private void setUserMapper(UserMapper userMapper) {
         WebSocketServer.userMapper = userMapper;
+    }
+    @Autowired
+    private void setRecordMapper(RecordMapper recordMapper) {
+        WebSocketServer.recordMapper = recordMapper;
     }
 
     @OnOpen
