@@ -57,9 +57,11 @@ class GameIndexView extends Component {
     render() {
         return (
             <React.Fragment>
-                {this.props.status === 'playing' && <PlayGround />}
-                {this.props.status === 'matching' && <MatchGround />}
-                {this.props.loser !== "" && <GameResultBoard />}
+                <div className="container pt-5">
+                    {this.props.status === 'playing' && <PlayGround />}
+                    {this.props.status === 'matching' && <MatchGround />}
+                    {this.props.loser !== "" && <GameResultBoard />}
+                </div>
             </React.Fragment>
         );
     }
@@ -70,17 +72,17 @@ function mapStateToProps(state) {
         token: state.user.token,
         status: state.snakeGame.status,
         loser: state.snakeGame.loser,
-        game_object : state.snakeGame.game_object,
+        game_object: state.snakeGame.game_object,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        updateSocket : (obj) => dispatch(updateSocket(obj)),
-        updateOpponent : (data) => dispatch(updateOpponent(data)),
-        updateGame : (obj) => dispatch(updateGame(obj)),
-        updateStatus : (payload) => dispatch(updateStatus(payload)),
-        updateLoser : (payload) => dispatch(updateLoser(payload)),
+        updateSocket: (obj) => dispatch(updateSocket(obj)),
+        updateOpponent: (data) => dispatch(updateOpponent(data)),
+        updateGame: (obj) => dispatch(updateGame(obj)),
+        updateStatus: (payload) => dispatch(updateStatus(payload)),
+        updateLoser: (payload) => dispatch(updateLoser(payload)),
     }
 }
 
