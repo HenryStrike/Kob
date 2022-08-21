@@ -26,8 +26,34 @@ class UserBotIndexView extends Component {
             "https://cdn.jsdelivr.net/npm/ace-builds@" + require('ace-builds').version + "/src-noconflict/");
     }
 
+    state = {
+        initial_funtion : 
+        "/*\nInput format : \nmapString + me.sx + me.sy + [me.op] + you.sx + you.sy + [you.op], split by '#'\n\n" + 
+        "Command : \n0 : Up, 1 : Right, 2 : Down, 3 : Left\n\n" +
+        "Header : \npublic class BotInterfaceImpl implements BotInterface\n" +
+        "*/\n\n" +
+        "@Override\n" + 
+        "public Integer nextMove(String input) {\n" +  
+        "   \n" + 
+        "}",
+    }
+
     handleAddBot() {
-        const data = {
+        const setTitle = (title) => {
+            this.title.current.value = title;
+        }
+        const setDescription = (description) => {
+            this.description.current.value = description;
+        }
+        const setContent = (content) => {
+            this.content.current.editor.setValue(content);
+        }
+        const setMessage = (message) => {
+            this.message.current.innerHTML = message;
+        };
+
+        setMessage("");
+        this.props.addBot({
             token : this.props.token,
             bot: {
                 title: this.title.current.value,
@@ -35,33 +61,35 @@ class UserBotIndexView extends Component {
                 content: this.content.current.editor.getValue(),
             },
             success() {
-                this.title.current.value = "";
-                this.description.current.value = "";
-                this.content.current.editor.setValue("");
+                setTitle("");
+                setDescription("");
+                setContent("");
                 Modal.getInstance("#add_bot_btn").hide();
             },
             error(resp) {
-                this.message.current.innerHTML = resp.runtime_message;
+                setMessage(resp.runtime_message);
             }
-        }
-        this.message.current.innerHTML = "";
-        this.props.addBot(data);
+        });
     }
 
     handleRemoveBot(bot_id) {
-        const data = {
+        this.props.removeBot({
             token : this.props.token,
             id: bot_id,
             success() {
                 Modal.getInstance("#delete_bot_warning").hide();
             },
             error() { },
-        }
-        this.props.removeBot(data);
+        });
     }
 
     handleEditBot(bot_id) {
-        const data = {
+        const setMessage = (message) => {
+            this.bot_message.current.innerHTML = message;
+        };
+
+        setMessage("");
+        this.props.editBot({
             token : this.props.token,
             bot: {
                 id: bot_id,
@@ -73,11 +101,9 @@ class UserBotIndexView extends Component {
                 Modal.getInstance("#edit_bot_btn").hide();
             },
             error(resp) {
-                this.bot_message.current.value = resp.runtime_message;
+                setMessage(resp.runtime_message);
             },
-        }
-        this.bot_message.current.value = "";
-        this.props.editBot(data);
+        });
     }
 
     componentDidMount() {
@@ -144,7 +170,7 @@ class UserBotIndexView extends Component {
                                                     <textarea ref={this.description} className="form-control" id="bot_description" rows="3" placeholder="Please enter bot description"></textarea>
                                                 </div>
                                                 <div className="mb-3">
-                                                    <label htmlFor="code" className="form-label">Code</label>
+                                                    <label htmlFor="code" className="form-label">Code {"( Java Only )"}</label>
                                                     <AceEditor
                                                         ref={this.content}
                                                         height="300px"
@@ -152,6 +178,7 @@ class UserBotIndexView extends Component {
                                                         mode="c_cpp"
                                                         theme="textmate"
                                                         fontSize='14px'
+                                                        value={this.state.initial_funtion}
                                                     />
                                                 </div>
                                             </div>

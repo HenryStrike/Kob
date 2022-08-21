@@ -12,6 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Player {
     private Integer id;
+    private Integer botId;
+    private String botCode;
     private Integer sx;
     private Integer sy;
     private List<Integer> steps;
@@ -33,7 +35,7 @@ public class Player {
             x += dx[d];
             y += dy[d];
             list.add(new Cell(x, y));
-            if(check_tail_increment(++ step)) {
+            if(!check_tail_increment(++ step)) {
                 list.remove(0);
             }
         }

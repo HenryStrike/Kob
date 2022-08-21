@@ -64,7 +64,6 @@ export const getInfo = (data) => (dispatch) => {
         type: "get",
         headers: { Authorization: "Bearer " + data.token },
         success(resp) {
-            console.log(resp)
             if (resp.runtime_message === "getInfo success") {
                 dispatch(updateUserInfo({
                     ...resp,
@@ -115,9 +114,14 @@ export const regiser = (data) => {
     });
 }
 
-export const checkLocalUser = (data) => (dispatch) => {
+export const checkLocalUser = (dispatch) => {
     // if the token valid
     const token = localStorage.getItem("token");
+    if(token == null) {
+        dispatch(updatePulling(false));
+        return;
+    }
+    
     $.ajax({
         url: API_URL + "info/",
         type: "get",
@@ -134,15 +138,12 @@ export const checkLocalUser = (data) => (dispatch) => {
                 );
                 dispatch(updatePulling(false));
                 dispatch(updateToken(token));
-                data.success(resp);
             } else {
                 dispatch(updatePulling(false));
-                data.error(resp);
             }
         },
-        error(resp) {
+        error() {
             dispatch(updatePulling(false));
-            data.error(resp);
         },
     });
 }

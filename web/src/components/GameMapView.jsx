@@ -15,6 +15,10 @@ class GameMapView extends Component {
         this.props.updateGameObject(new GameMap(this.ctx.current.getContext('2d'), this.root.current, this.props.game_map, this.props.socket));
     }
 
+    componentWillUnmount() {
+        this.props.updateGameObject(null);
+    }
+
     render() {
         return (
             <div className='gamemap' ref={this.root}>

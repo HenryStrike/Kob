@@ -14,10 +14,7 @@ function App() {
 	const dispatch = useDispatch();
 
     if(!isLoggedIn && isPulling){
-        dispatch(checkLocalUser({
-            success(){},
-            error(){},
-        }));
+        dispatch(checkLocalUser);
     }
 
 	return (

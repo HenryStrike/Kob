@@ -5,7 +5,7 @@ export const snakeGameSlice = createSlice({
   initialState: {
     socket : null,
     status : "matching", // matching view and playing view
-    opponent_username : "My opponent",
+    opponent_username : "???",
     opponent_photo : "https://cdn.acwing.com/media/article/image/2022/08/09/1_1db2488f17-anonymous.png",
     game_map : null,
     a_id : 0,

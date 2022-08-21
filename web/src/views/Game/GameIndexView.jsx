@@ -42,8 +42,17 @@ class GameIndexView extends Component {
             this.socket.onclose = () => {
                 console.log("disconnected");
                 this.props.updateOpponent({
-                    username: "My opponent",
+                    username: "???",
                     photo: "https://cdn.acwing.com/media/article/image/2022/08/09/1_1db2488f17-anonymous.png",
+                });
+                this.props.updateGame({
+                    game_map : null,
+                    a_id : 0,
+                    a_sx : 0,
+                    a_sy : 0,
+                    b_id : 0, 
+                    b_sx : 0,
+                    b_sy : 0,
                 });
             }
         }
@@ -52,6 +61,7 @@ class GameIndexView extends Component {
     componentWillUnmount() {
         this.socket.close();
         this.props.updateStatus("matching");
+        this.props.updateLoser("");
     }
 
     render() {
