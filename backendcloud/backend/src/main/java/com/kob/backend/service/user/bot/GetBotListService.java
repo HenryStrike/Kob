@@ -4,6 +4,6 @@ import com.kob.backend.pojo.Bot;
 
 import java.util.List;
 
-public interface GetListService {
+public interface GetBotListService {
     List<Bot> getList();
 }

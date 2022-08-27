@@ -109,8 +109,7 @@ class UserBotIndexView extends Component {
     componentDidMount() {
         this.props.getList({
             token : this.props.token,
-            success() { },
-            error() { },
+            error() {}
         });
 
         this.edit_modal.current.addEventListener('show.bs.modal', event => {
@@ -192,7 +191,7 @@ class UserBotIndexView extends Component {
                                 </div>
                             </div>
                             <div className="card-body">
-                                <table className="table table-striped table-hover">
+                                <table className="table table-striped table-hover" style={{"textAlign" : "center"}}>
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>

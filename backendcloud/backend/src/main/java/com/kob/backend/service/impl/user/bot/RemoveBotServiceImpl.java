@@ -1,11 +1,10 @@
 package com.kob.backend.service.impl.user.bot;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.kob.backend.mapper.BotMapper;
 import com.kob.backend.pojo.Bot;
 import com.kob.backend.pojo.User;
 import com.kob.backend.service.impl.user.database.utils.UserDetailsImpl;
-import com.kob.backend.service.user.bot.RemoveService;
+import com.kob.backend.service.user.bot.RemoveBotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class RemoveServiceImpl implements RemoveService {
+public class RemoveBotServiceImpl implements RemoveBotService {
     @Autowired
     BotMapper botMapper;
 

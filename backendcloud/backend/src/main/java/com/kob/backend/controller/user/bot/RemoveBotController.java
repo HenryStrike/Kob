@@ -1,6 +1,6 @@
 package com.kob.backend.controller.user.bot;
 
-import com.kob.backend.service.user.bot.EditService;
+import com.kob.backend.service.user.bot.RemoveBotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-public class EditController {
+public class RemoveBotController {
     @Autowired
-    private EditService editService;
+    private RemoveBotService removeBotService;
 
-    @PostMapping("/user/bot/edit/")
-    public Map<String, String> editBot(@RequestParam Map<String, String> data) {
-        return editService.editBot(data);
+    @PostMapping("/user/bot/remove/")
+    public Map<String, String> removeBot(@RequestParam Map<String, String> data) {
+        return removeBotService.removeBot(data);
     }
 }

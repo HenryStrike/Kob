@@ -1,10 +1,11 @@
 package com.kob.backend.service.impl.user.bot;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.kob.backend.mapper.BotMapper;
 import com.kob.backend.pojo.Bot;
 import com.kob.backend.pojo.User;
 import com.kob.backend.service.impl.user.database.utils.UserDetailsImpl;
-import com.kob.backend.service.user.bot.AddService;
+import com.kob.backend.service.user.bot.AddBotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class AddServiceImpl implements AddService {
+public class AddBotServiceImpl implements AddBotService {
     @Autowired
     private BotMapper botMapper;
 
@@ -31,6 +32,13 @@ public class AddServiceImpl implements AddService {
         String content = data.get("content");
 
         Map<String, String> map = new HashMap<>();
+
+        QueryWrapper<Bot> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("user_id", user.getId());
+        if(botMapper.selectCount(queryWrapper) >= 10) {
+            map.put("runtime_message", "You can only have at most 10 bots");
+            return map;
+        }
 
         if(title == null) {
             map.put("runtime_message", "Title cannot be empty");

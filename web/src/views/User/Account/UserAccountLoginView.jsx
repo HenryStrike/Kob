@@ -62,7 +62,7 @@ class UserAccountLoginView extends Component {
             <div className="row justify-content-md-center">
                 <div className="col-3">
                     <form>
-                        <div className="mb-3">
+                        <div className="mb-3 mt-3">
                             <span>
                                 <img className='login_icon' src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/microsoft/310/person_1f9d1.png" alt="person" />
                             </span>
@@ -77,7 +77,7 @@ class UserAccountLoginView extends Component {
                             <input ref={this.password} type="password" className="form-control" id="password" placeholder="Enter your password" />
                         </div>
                         <p className="text-center text-danger" ref={this.message}></p>
-                        <button onClick={this.handleLogin} type="submit" className="btn btn-primary w-100">Login</button>
+                        <button onClick={this.handleLogin} type="submit" className="btn btn-primary w-100 mb-3">Login</button>
                         {this.state.navigated && <Navigate to="/" replace={true} />}
                     </form>
                 </div>

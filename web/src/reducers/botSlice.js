@@ -24,7 +24,6 @@ export const getList = (data) => (dispatch) => {
         headers: { Authorization: "Bearer " + data.token },
         success(resp) {
             dispatch(updateBotList(resp));
-            data.success(resp);
         },
         error(resp) {
             data.error(resp);
@@ -43,10 +42,10 @@ export const addBot = (data) => (dispatch) => {
             content: data.bot.content,
         },
         success(resp) {
-            if(resp.runtime_message === "addBot success") {
+            if (resp.runtime_message === "addBot success") {
                 dispatch(getList(data));
                 data.success(resp);
-            }else {
+            } else {
                 data.error(resp);
             }
         },
@@ -86,10 +85,10 @@ export const editBot = (data) => (dispatch) => {
             content: data.bot.content,
         },
         success(resp) {
-            if(resp.runtime_message === "editBot success") {
+            if (resp.runtime_message === "editBot success") {
                 dispatch(getList(data));
                 data.success(resp);
-            }else {
+            } else {
                 data.error(resp);
             }
         },

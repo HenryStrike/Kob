@@ -2,6 +2,7 @@ import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import ProtectRoute from './ProtectRoute';
 import RecordIndexView from '../views/Record/RecordIndexView';
+import RecordContentView from '../views/Record/RecordContentView';
 import GameIndexView from '../views/Game/GameIndexView';
 import RankIndexView from '../views/Rank/RankIndexView';
 import NotFound from '../views/Error/NotFound';
@@ -31,6 +32,10 @@ const Routes = (isLoggedIn) => {
         {
             path : '/record',
             element : ProtectRoute(<RecordIndexView/>, isLoggedIn, "/user/login/"),
+        },
+        {
+            path : '/record/:recordId/',
+            element : ProtectRoute(<RecordContentView/>, isLoggedIn, "/user/login/"),
         },
         {
             path : '/404',

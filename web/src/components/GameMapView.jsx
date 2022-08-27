@@ -12,11 +12,7 @@ class GameMapView extends Component {
     }
 
     componentDidMount() {
-        this.props.updateGameObject(new GameMap(this.ctx.current.getContext('2d'), this.root.current, this.props.game_map, this.props.socket));
-    }
-
-    componentWillUnmount() {
-        this.props.updateGameObject(null);
+        this.props.updateGameObject(new GameMap(this.ctx.current.getContext('2d'), this.root.current, this.props.is_record, this.props.game_map, this.props.socket, this.props.a_steps, this.props.b_steps, this.props.record_loser));
     }
 
     render() {
@@ -32,6 +28,10 @@ function mapStateToProps(state) {
     return {
         game_map : state.snakeGame.game_map,
         socket : state.snakeGame.socket,
+        is_record : state.record.is_record,
+        a_steps : state.record.a_steps,
+        b_steps : state.record.b_steps,
+        record_loser : state.record.record_loser,
     }
 }
 

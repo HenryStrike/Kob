@@ -4,7 +4,7 @@ import com.kob.backend.mapper.BotMapper;
 import com.kob.backend.pojo.Bot;
 import com.kob.backend.pojo.User;
 import com.kob.backend.service.impl.user.database.utils.UserDetailsImpl;
-import com.kob.backend.service.user.bot.EditService;
+import com.kob.backend.service.user.bot.EditBotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class EditServiceImpl implements EditService {
+public class EditBotServiceImpl implements EditBotService {
     @Autowired
     private BotMapper botMapper;
 

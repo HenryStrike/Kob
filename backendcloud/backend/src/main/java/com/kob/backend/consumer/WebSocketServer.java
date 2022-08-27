@@ -28,7 +28,7 @@ public class WebSocketServer {
     private User user;
     // thread safe: hash and set
     public final static ConcurrentHashMap<Integer, WebSocketServer> users = new ConcurrentHashMap<>();
-    private static UserMapper userMapper;
+    public static UserMapper userMapper;
     public static RecordMapper recordMapper;
     private static BotMapper botMapper;
     public static RestTemplate restTemplate;

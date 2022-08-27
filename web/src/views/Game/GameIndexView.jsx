@@ -4,6 +4,7 @@ import MatchGround from '../../components/MatchGround';
 import GameResultBoard from '../../components/GameResultBoard';
 import { connect } from 'react-redux';
 import { updateSocket, updateOpponent, updateGame, updateStatus, updateLoser } from '../../reducers/snakeGameSlice';
+import { updateIsRecord } from '../../reducers/recordSlice';
 
 class GameIndexView extends Component {
     constructor() {
@@ -93,6 +94,7 @@ function mapDispatchToProps(dispatch) {
         updateGame: (obj) => dispatch(updateGame(obj)),
         updateStatus: (payload) => dispatch(updateStatus(payload)),
         updateLoser: (payload) => dispatch(updateLoser(payload)),
+        updateIsRecord : (payload) => dispatch(updateIsRecord(payload)),
     }
 }
 

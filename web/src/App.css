@@ -132,3 +132,12 @@
   padding-top: 5vh;
   text-align: center;
 }
+
+.user_photo_record {
+  width: 4vh;
+  border-radius: 50%;
+}
+
+.vs_record {
+  font-weight: 600;
+}

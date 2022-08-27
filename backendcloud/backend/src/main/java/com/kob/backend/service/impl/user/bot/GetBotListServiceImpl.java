@@ -5,17 +5,16 @@ import com.kob.backend.mapper.BotMapper;
 import com.kob.backend.pojo.Bot;
 import com.kob.backend.pojo.User;
 import com.kob.backend.service.impl.user.database.utils.UserDetailsImpl;
-import com.kob.backend.service.user.bot.GetListService;
+import com.kob.backend.service.user.bot.GetBotListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class GetListServiceImpl implements GetListService {
+public class GetBotListServiceImpl implements GetBotListService {
     @Autowired
     BotMapper botMapper;
 
