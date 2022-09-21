@@ -33,7 +33,6 @@ class UserBotIndexView extends Component {
         "Command : \n0 : Up, 1 : Right, 2 : Down, 3 : Left\n\n" +
         "Header : \npublic class BotInterfaceImpl implements BotInterface\n" +
         "*/\n\n" +
-        "@Override\n" + 
         "public Integer nextMove(String input) {\n" +  
         "   \n" + 
         "}",

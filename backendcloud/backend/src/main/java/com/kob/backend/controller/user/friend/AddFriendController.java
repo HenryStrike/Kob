@@ -13,7 +13,7 @@ public class AddFriendController {
     @Autowired
     AddFriendService addFriendService;
 
-    @PostMapping("/user/friend/add/")
+    @PostMapping("/api/user/friend/add/")
     public Map<String, String> addFriend(@RequestParam Map<String, String> data) {
         return addFriendService.addFriend(data);
     }

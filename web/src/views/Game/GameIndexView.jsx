@@ -13,7 +13,7 @@ class GameIndexView extends Component {
     }
     componentDidMount() {
         if (this.props.token !== "") {
-            const socketUrl = "ws://127.0.0.1:8080/websocket/" + this.props.token;
+            const socketUrl = "wss://app3449.acapp.acwing.com.cn/websocket/" + this.props.token;
             this.socket = new WebSocket(socketUrl);
 
             this.socket.onopen = () => {
@@ -43,7 +43,7 @@ class GameIndexView extends Component {
             this.socket.onclose = () => {
                 console.log("disconnected");
                 this.props.updateOpponent({
-                    username: "???",
+                    username: "? ? ?",
                     photo: "https://cdn.acwing.com/media/article/image/2022/08/09/1_1db2488f17-anonymous.png",
                 });
                 this.props.updateGame({

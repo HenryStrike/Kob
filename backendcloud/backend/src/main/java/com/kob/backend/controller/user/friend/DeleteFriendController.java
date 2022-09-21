@@ -13,7 +13,7 @@ public class DeleteFriendController {
     @Autowired
     DeleteFriendService deleteFriendService;
 
-    @PostMapping("/user/friend/delete/")
+    @PostMapping("/api/user/friend/delete/")
     public Map<String, String> deleteFriend(@RequestParam Map<String, String> data) {
         return deleteFriendService.deleteFriend(data);
     }

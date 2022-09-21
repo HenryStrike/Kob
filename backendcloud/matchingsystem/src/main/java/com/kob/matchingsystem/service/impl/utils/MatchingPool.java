@@ -55,7 +55,6 @@ public class MatchingPool extends Thread{
 
     private void matchPlayers() {
         // try to match all players
-        System.out.println("matching players: " + players.toString());
         boolean[] used = new boolean[players.size()];
         for (int i = 0; i < players.size(); i ++ ) {
             if(used[i]) continue;

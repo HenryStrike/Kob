@@ -13,7 +13,7 @@ public class EditBotController {
     @Autowired
     private EditBotService editBotService;
 
-    @PostMapping("/user/bot/edit/")
+    @PostMapping("/api/user/bot/edit/")
     public Map<String, String> editBot(@RequestParam Map<String, String> data) {
         return editBotService.editBot(data);
     }

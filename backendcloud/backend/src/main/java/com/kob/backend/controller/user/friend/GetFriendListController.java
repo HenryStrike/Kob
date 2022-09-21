@@ -13,7 +13,7 @@ public class GetFriendListController {
     @Autowired
     GetFriendListService getFriendListService;
 
-    @GetMapping("/user/friend/list/")
+    @GetMapping("/api/user/friend/list/")
     public List<User> getList() {
         return getFriendListService.getList();
     }
