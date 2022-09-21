@@ -10,6 +10,7 @@ export const userSlice = createSlice({
         username: "",
         photo: "",
         token: "",
+        score: null,
         isLoggedIn: false,
         isPulling: true,
     },
@@ -18,18 +19,15 @@ export const userSlice = createSlice({
             state.id = action.payload.id;
             state.username = action.payload.username;
             state.photo = action.payload.photo;
+            state.score = action.payload.score;
             state.isLoggedIn = action.payload.isLoggedIn;
         },
-
         updateToken: (state, action) => {
             state.token = action.payload;
         },
-
         updatePulling: (state, action) => {
             state.isPulling = action.payload;
         },
-
-
     },
 })
 
@@ -117,11 +115,11 @@ export const regiser = (data) => {
 export const checkLocalUser = (dispatch) => {
     // if the token valid
     const token = localStorage.getItem("token");
-    if(token == null) {
+    if (token == null) {
         dispatch(updatePulling(false));
         return;
     }
-    
+
     $.ajax({
         url: API_URL + "info/",
         type: "get",

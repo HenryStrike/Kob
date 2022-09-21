@@ -3,12 +3,11 @@ package com.kob.botrunningsystem.utils;
 // format of bot code
 // user can only override the nextMove function
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Vector;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
-public class BotInterfaceImpl implements com.kob.botrunningsystem.utils.BotInterface{
+public class BotInterfaceImpl implements java.util.function.Supplier<Integer> {
     public static class Cell {
         Integer x;
         Integer y;
@@ -44,11 +43,10 @@ public class BotInterfaceImpl implements com.kob.botrunningsystem.utils.BotInter
         return list;
     }
 
-    @Override
     public Integer nextMove(String input) {
         // format "mapString + me.sx + me.sy + [me.op] + you.sx + you.sy + [you.op]", split by '#'
         String[] data = input.split("#");
-        int g[][] = new int[13][14];
+        int[][] g = new int[13][14];
         for(int i = 0, k = 0; i < 13; i ++ ) {
             for(int j = 0; j < 14; j ++, k ++ ) {
                 if(data[0].charAt(k) == '1') {
@@ -75,5 +73,16 @@ public class BotInterfaceImpl implements com.kob.botrunningsystem.utils.BotInter
             return options.get((int)(Math.random() * options.size()));
         }
         return 0;
+    }
+
+    @Override
+    public Integer get() {
+        File file = new File("input.txt");
+        try {
+            Scanner sc = new Scanner(file);
+            return nextMove(sc.next());
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

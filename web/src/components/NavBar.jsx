@@ -46,6 +46,7 @@ function NavBar() {
                             </NavLink>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><Link className="dropdown-item" to="/user/bot/">My Bots</Link></li>
+                                <li><Link className="dropdown-item" to="/user/friend/">Friends</Link></li>
                                 <li><hr className="dropdown-divider" /></li>
                                 <li><Link className="dropdown-item" to="/" onClick={handleLogout}>Sign out</Link></li>
                             </ul>

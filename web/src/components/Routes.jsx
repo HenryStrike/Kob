@@ -10,6 +10,7 @@ import UserBotIndexView from '../views/User/Bot/UserBotIndexView';
 import UserAccountLoginView from '../views/User/Account/UserAccountLoginView';
 import UserAccountRegisterView from '../views/User/Account/UserAccountRegisterView';
 import IndexView from './../views/IndexView';
+import UserFriendIndexView from './../views/User/Friend/UserFriendIndexView';
 
 const Routes = (isLoggedIn) => {
     return [
@@ -48,6 +49,10 @@ const Routes = (isLoggedIn) => {
                 {
                     path : 'bot',
                     element : ProtectRoute(<UserBotIndexView/>, isLoggedIn, "/user/login/"),
+                },
+                {
+                    path : 'friend',
+                    element : ProtectRoute(<UserFriendIndexView/>, isLoggedIn, "/user/login/"),
                 },
                 {
                     path : 'login',

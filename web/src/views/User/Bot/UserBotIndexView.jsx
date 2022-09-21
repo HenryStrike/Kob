@@ -4,6 +4,7 @@ import AceEditor from "react-ace";
 import ace from 'ace-builds/src-noconflict/ace';
 import { getList, addBot, removeBot, editBot } from '../../../reducers/botSlice';
 import { Modal } from 'bootstrap/dist/js/bootstrap';
+import UserProfileCard from '../../../components/UserProfileCard';
 
 class UserBotIndexView extends Component {
     constructor() {
@@ -136,13 +137,7 @@ class UserBotIndexView extends Component {
             <div className="container pt-5">
                 <div className="row justify-content-md-center">
                     <div className="col-md-3">
-                        <div className="card mt-3">
-                            <img src={this.props.photo} className="card-img-top" alt="user_icon" style={{ width: "100%" }} />
-                            <div className="card-body">
-                                <h5 className="card-title">{this.props.username}</h5>
-                                <p className="card-text">user profile</p>
-                            </div>
-                        </div>
+                        <UserProfileCard/>
                     </div>
                     <div className="col-md-9">
                         <div className="card mt-3">

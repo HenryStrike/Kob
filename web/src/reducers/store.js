@@ -5,6 +5,7 @@ import botReducer from "./botSlice";
 import snakeGameReducer from "./snakeGameSlice";
 import recordReducer from "./recordSlice";
 import rankReducer from "./rankSlice";
+import friendReducer from './friendSlice';
 
 const reducer = combineReducers({
     user: userReducer,
@@ -12,6 +13,7 @@ const reducer = combineReducers({
     snakeGame: snakeGameReducer,
     record : recordReducer,
     rank : rankReducer,
+    friend : friendReducer,
 });
 
 const store = configureStore({
