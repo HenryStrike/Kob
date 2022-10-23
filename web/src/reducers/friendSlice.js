@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import $ from 'jquery'
 
-const API_URL = "https://app3449.acapp.acwing.com.cn/api/user/friend/";
+//const API_URL = "https://app3449.acapp.acwing.com.cn/api/user/friend/";
+const API_URL = "http://127.0.0.1:8080/api/user/friend/";
 
 export const friendSlice = createSlice({
     name: 'friend',
